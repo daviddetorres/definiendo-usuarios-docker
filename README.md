@@ -1,9 +1,6 @@
 # Introducción
-Este repositorio continene los ficheros originales del [artículo del blog 'Contenedor Inseguro'](https://www.contenedorinseguro.net/2019/09/como-de-inseguro-es-contenedor-docker-trivy.html) sobre la herramienta [trivy de Aquasec](https://github.com/aquasecurity/trivy). Esta herramienta permite auditar la seguridad de imágenes de Docker. 
+Este repositorio continene los ficheros originales del [artículo del blog 'Contenedor Inseguro'](https://www.contenedorinseguro.net/) sobre la importancia de definir el usuario en los contenedores Docker. 
 
-En el artículo se utiliza una aplicación sencilla en python y varios ejemplos de imágenes con diferentes configuraciones e imágenes base para ver las vulnerabilidades que detecta Trivy en cada una de ellas.
-
-En el directorio `/informes` se pueden encontrar los informes generados por trivy de cada una de las imágenes.    
 
 # Instalación
 Para copiar el repositorio a local: 
