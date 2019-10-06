@@ -35,7 +35,7 @@ También crearemos un directorio con un usuario root también con un archivo que
 
 ```
 sudo mkdir /tmp/directorioroot
-sudo echo "El secreto del superusuario es 42." > /tmp/directorioroot/secreto.txt
+sudo sh -c 'echo "El secreto del superusuario es 42." > /tmp/directorioroot/secreto.txt'
 sudo chmod 700 /tmp/directorioroot
 sudo chmod 600 /tmp/directorioroot/secreto.txt
 ```
@@ -49,11 +49,33 @@ Imagen con usuario por defecto (root):
 docker build -f Dockerfile_usuariopordefecto -t app-usuario-root .
 docker run -p 5000:5000 -v /tmp:/tmp/host -d --name contenedor-root app-usuario-root
 ```
+Imagen con usuario definido (usuariocontenedor):
 
+```
+docker build -f Dockerfile_conusuario -t app-usuario-noroot .
+docker run -p 5001:5000 -v /tmp:/tmp/host -d --name contenedor-noroot app-usuario-noroot
+```
 
 # Probando los accesos con los diferentes contenedores
+
+Para probar la lectura del fichero /tmp/directorioroot/secreto.txt desde el contenedor con usuario por defecto:
 
 ```
 docker exec contenedor-root cat /tmp/host/directorioroot/secreto.txt
 ```
 
+Para probar la lectura del fichero /tmp/directorioroot/secreto.txt desde el contenedor con usuario definido:
+
+```
+docker exec contenedor-noroot cat /tmp/host/directorioroot/secreto.txt
+```
+
+Para probar la lectura del fichero /tmp/directoriousuario/secreto.txt desde el contenedor con usuario definido:
+
+```
+docker exec contenedor-noroot cat /tmp/host/directoriousuario/secreto.txt
+```
+
+La ejecución de estos comandos tiene el siguiente resultado:
+
+![Prueba de concepto de escape del contenedor inseguro por usuario root y volumen en host.](./imagen-ejecucion-acceso/poc_acceso_usuario_contenedor.png)
