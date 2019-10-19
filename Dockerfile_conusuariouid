@@ -4,8 +4,9 @@ RUN pip install Flask waitress
 RUN mkdir /app
 WORKDIR /app
 COPY ./flask_app.py /app/
-RUN addgroup -S usuariocontenedor && \
-	adduser -S -s /bin/false -G  usuariocontenedor usuariocontenedor  && \
+RUN apk add shadow && \
+	/usr/sbin/groupadd -g 10001 --system usuariocontenedor && \
+	/usr/sbin/useradd --system -u 10001 -s /bin/false -g  usuariocontenedor usuariocontenedor  && \
 	chown -R usuariocontenedor:usuariocontenedor /app
 USER usuariocontenedor
 EXPOSE 5000

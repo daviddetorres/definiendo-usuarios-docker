@@ -6,7 +6,7 @@ Este repositorio continene los ficheros originales del [artículo del blog 'Cont
 Para copiar el repositorio a local: 
 
 ```
-git clone https://github.com/daviddetorres/jugandocontrivy
+git clone https://github.com/daviddetorres/definiendo-usuarios-docker
 ```
 
 Para ejecutar en local la aplicación se requieren las siguientes librerías: 
@@ -54,6 +54,12 @@ Imagen con usuario definido (usuariocontenedor):
 ```
 docker build -f Dockerfile_conusuario -t app-usuario-noroot .
 docker run -p 5001:5000 -v /tmp:/tmp/host -d --name contenedor-noroot app-usuario-noroot
+```
+Imagen con usuario y uid definido (usuariocontenedoruid):
+
+```
+docker build -f Dockerfile_conusuariouid -t app-usuario-norootuid .
+docker run -p 5002:5000 -v /tmp:/tmp/host -d --name contenedor-norootuid app-usuario-norootuid
 ```
 
 # Probando los accesos con los diferentes contenedores
